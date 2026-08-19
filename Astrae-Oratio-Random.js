@@ -68,7 +68,6 @@ const komentarPool = [
   const alurSurvei = generateRandomSurvei();
   const teksKomentar = komentarPool[Math.floor(Math.random() * komentarPool.length)];
 
-  // Log dulu biar kamu bisa lihat kombinasi apa yang akan dipakai run ini
   console.log("=== Jawaban yang akan diisi run ini ===");
   console.log(JSON.stringify(alurSurvei, null, 2));
   console.log(`Komentar: "${teksKomentar}"`);
@@ -97,14 +96,12 @@ const komentarPool = [
     const url = "https://astraeoratio.plaync.com/ja-jp/index";
     await page.goto(url, { waitUntil: "networkidle2" });
 
-    // ===== FASE 1: PENDAFTARAN MANUAL =====
     await pauseBot(
       "Silakan lakukan manual: pilih Google Play/App Store, isi email, " +
       "verifikasi via email, centang semua persetujuan, lalu klik 'アンケートを始める'. " +
       "Setelah form survei (pertanyaan no.1 dst) muncul, tekan ENTER di sini."
     );
 
-    // ===== FASE 2: TUNGGU FORM SURVEI ASLI MUNCUL =====
     await page.waitForSelector('.cbt-layer__survey', { timeout: 15000 });
     console.log("Form survei terdeteksi, mulai mengisi otomatis...");
 
